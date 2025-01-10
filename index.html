@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра "Угадай число"</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        .game-message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .result {
+            font-weight: bold;
+            font-size: 1.4em;
+            color: #FF6347;
+        }
+
+        .play-again {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-container {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Игра "Угадай число"</h1>
+        <p>Попробуй угадать число от 1 до 10. У тебя есть 5 попыток!</p>
+        <button onclick="startGame()">Начать игру</button>
+    </div>
+
+    <script>
+        function startGame() {
+            let secretNumber = Math.floor(Math.random() * 10) + 1;
+            let attempts = 5;
+            alert("Привет! Попробуй угадать число от 1 до 10. У тебя есть 5 попыток.");
+
+            while (attempts > 0) {
+                let userInput = prompt(`У тебя осталось ${attempts} попыток. Введи число:`);
+
+                if (userInput === null) {
+                    alert("Ты отменил игру.");
+                    return;
+                }
+
+                let userNumber = parseInt(userInput);
+
+                if (isNaN(userNumber)) {
+                    alert("Пожалуйста, введи правильное число!");
+                    continue;
+                }
+
+                if (userNumber === secretNumber) {
+                    alert("Поздравляю! Ты угадал число.");
+                    break;
+                } else if (userNumber < secretNumber) {
+                    alert("Введённое число меньше загаданного.");
+                } else {
+                    alert("Введённое число больше загаданного.");
+                }
+
+                attempts--;
+
+                if (attempts === 0) {
+                    alert(`Извини, попытки закончились. Загаданное число было: ${secretNumber}`);
+                }
+            }
+
+            let playAgain = confirm("Хочешь сыграть снова?");
+            if (playAgain) {
+                startGame();
+            } else {
+                alert("Спасибо за игру! До свидания.");
+            }
+        }
+    </script>
+</body>
+</html>
