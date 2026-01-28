@@ -7,6 +7,11 @@ A simple JavaScript game: guess a number from 1 to 10 with 5 attempts.
 ## Live Demo
 👉 https://kiroloskhairy.com/guess-the-number-game/
 
+# Guess the Number — Mini Game
+
+![Game Preview](/preview.png)
+
+
 ## Tech Stack
 - HTML
 - CSS
